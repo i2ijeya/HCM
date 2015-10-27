@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HC_App</title>
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet"
+	type="text/css">
+<link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet"
+	type="text/css">
+<!-- HTML5 for IE backward compatibility -->
+<!-- [if lt IE 9] 
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" />
+         <![endif]
+  -->
+
+<link href="css/navbar-fixed-top.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+
+<div class="container">
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" href="#panel-looking-info">
+                    <h4>
+                        Panel 1</h4>
+                </a><small>Panel heading description</small>
+            </div>
+            <div class="panel-body in" id="panel-looking-info">
+                Panel body 1
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" href="#panel-looking-info">
+                    <h4>
+                        Panel 2</h4>
+                </a><small>Panel heading description</small>
+            </div>
+            <div class="panel-body in" id="panel-looking-info">
+                Panel body 2
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" href="#panel-looking-info">
+                    <h4>
+                        Panel 3</h4>
+                </a><small>Panel heading description</small>
+            </div>
+            <div class="panel-body in" id="panel-looking-info">
+                Panel body 3
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+You can see problem on http://bootply.com/76904 when you resize to small size.
+
+Any idea for this?
+css layout twitter-bootstrap-3
+share|edit|flag
+	
+asked Aug 25 '13 at 11:21
+Minh Nguyễn
+18115
+	
+   	
+  	
+	
+What layout are you looking for (for sm size)? Panel 1 and Panel 2 on first row, panel 3 under them? –  edsioufi Aug 25 '13 at 11:31
+   	
+  	
+	
+Yes, as you say. Panel 1 and Panel 2 on first row, Panel 3 under them when viewing on browser. –  Minh Nguyễn Aug 25 '13 at 15:58
+	
+add comment
+	
+start a bounty
+1 Answer
+active oldest votes
+up vote 4 down vote accepted
+	
+
+update 2
+
+Also read: https://github.com/twbs/bootstrap/issues/10152#issuecomment-23247254. Instead of the float:left you should use a clearfix in combination with a responsive utility class for the viewport. See: http://twbs.github.io/bootstrap/css/#grid (section "Responsive column resets").
+
+So in your case: add <div class="clearfix visible-sm"></div> between the second and third panel column.
+
+update
+
+The overlap described below don't happen when all row div's (columns) have a float:left.
+
+col-xs-12 and col-sm-12, etc don't have a float.
+
+So to fix your problem add a float:left to your third column: <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="float:left;">
+
+<div class="container">
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" href="#panel-looking-info">
+                    <h4>
+                        Panel 1</h4>
+                </a><small>Panel heading description</small>
+            </div>
+            <div class="panel-body in" id="panel-looking-info">
+                Panel body 1
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" href="#panel-looking-info">
+                    <h4>
+                        Panel 2</h4>
+                </a><small>Panel heading description</small>
+            </div>
+            <div class="panel-body in" id="panel-looking-info">
+                Panel body 2
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="float:left;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" href="#panel-looking-info">
+                    <h4>
+                        Panel 3</h4>
+                </a><small>Panel heading description</small>
+            </div>
+            <div class="panel-body in" id="panel-looking-info">
+                Panel body 3
+            </div>
+        </div>
+    </div>
+</div>
+</div> 
+</body>
+</html>
